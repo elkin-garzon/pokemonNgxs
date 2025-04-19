@@ -1,10 +1,15 @@
 <section class="grid grid-cols-3 gap-4">
-    <div class="grid grid-cols-2 gap-4 col-span-2">
+    <div
+        class="grid grid-cols-2 gap-4 transition-all duration-900"
+        [class.col-span-2]="viewDetail"
+        [class.col-span-3]="!viewDetail">
         @for (pokemon of dataPokemons.results; track pokemon.name) {
         <pn-pokemon [pokemon]="pokemon" />
         }
     </div>
-    <pn-detail-pokemon class="relative"/>
+    @if (viewDetail) {
+        <pn-detail-pokemon class="relative"/>
+    }
 </section>
 
 <section class="flex justify-between mt-4">

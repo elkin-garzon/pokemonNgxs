@@ -22,7 +22,7 @@
 			"@pages/*": ["./src/app/pages/*"],
 			"@services/*": ["./src/app/services/*"],
 			"@interfaces/*": ["./src/app/interfaces/*"],
-			"@states/*": ["./src/app/states/*"],
+			"@store/*": ["./src/app/store/*"],
 			"@components/*": ["./src/app/components/*"],
 			"@helpers/*": ["./src/app/helpers/*"],
 			"@typesServices/*": ["./src/app/types/*"],
