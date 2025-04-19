@@ -1,7 +1,7 @@
 <section
-    class="w-full p-4 border-2 border-gray-300 rounded-lg shadow-md bg-white cursor-pointer flex h-full flex-col justify-between" (click)="closeDetailPokemon()">
+    class="w-full p-4 border-2 border-gray-300 rounded-lg shadow-md bg-white cursor-pointer flex h-full flex-col justify-between" >
 
-    <button type="button" class="absolute right-4 top-4 border-1 border-gray-400 text-gray-400 rounded-full w-7 h-7 items-center cursor-pointer">X</button>
+    <button type="button" class="absolute right-4 top-4 border-1 border-gray-400 text-gray-400 rounded-full w-7 h-7 items-center cursor-pointer" (click)="closeDetailPokemon()">X</button>
     <pn-image-pokemon [url]="urlImage" [id]="detailPokemon.id" [name]="detailPokemon.name" />
 
     <article>
