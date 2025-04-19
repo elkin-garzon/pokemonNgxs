@@ -1,0 +1,38 @@
+<section
+    class="w-full p-4 border-2 border-gray-300 rounded-lg shadow-md bg-white cursor-pointer flex h-full flex-col justify-between">
+
+    <pn-image-pokemon [url]="urlImage" [id]="detailPokemon.id" [name]="detailPokemon.name" />
+
+    <article>
+        <h2 class="text-center font-semibold">#{{detailPokemon.id}}</h2>
+        <h2 class="text-center font-semibold">{{detailPokemon.name}}</h2>
+    </article>
+
+    <article>
+        <h2 class="text-left font-semibold">Tipo</h2>
+        <p>{{types}}</p>
+    </article>
+
+    <article>
+        <h2 class="text-left font-semibold">Peso</h2>
+        <p>{{detailPokemon.weight}} KG</p>
+    </article>
+
+    <article>
+        <h2 class="text-left font-semibold">Sprites</h2>
+        <div class="grid grid-cols-4 gap-4 mt-2">
+            @for (sprite of sprites; track sprite) {
+            <pn-image-pokemon [url]="sprite" [id]="detailPokemon.id" [name]="detailPokemon.name" class="rounded-full border-2 border-gray-300" />
+            }
+        </div>
+
+    </article>
+
+    <article>
+        <h2 class="text-left font-semibold">Movimientos</h2>
+        <p>
+            {{moves}}
+        </p>
+    </article>
+
+</section>

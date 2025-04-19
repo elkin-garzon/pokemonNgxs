@@ -1,0 +1,13 @@
+<section class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 gap-4 col-span-2">
+        @for (pokemon of dataPokemons.results; track pokemon.name) {
+        <pn-pokemon [pokemon]="pokemon" />
+        }
+    </div>
+    <pn-detail-pokemon class="relative"/>
+</section>
+
+<section class="flex justify-between mt-4">
+    <button type="button" class="p-1 bg-blue-400 text-white font-semibold w-28 rounded-xs cursor-pointer" (click)="loadNewData(dataPokemons.previous)">Atras</button>
+    <button type="button" class="p-1 bg-blue-400 text-white font-semibold w-28 rounded-xs cursor-pointer" (click)="loadNewData(dataPokemons.next)">Siguiente</button>
+</section>
