@@ -7,6 +7,6 @@ import { environment } from '../../../environments/environment.development';
 })
 export class BaseService {
 
-	public readonly url_base: string = environment.URL_API;
+	public url_base: string = environment.URL_API;
 	public readonly http = inject(HttpClient);
 }

@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DataParams, DetailPokemon, ResultPokemns } from '@interfaces/pokemon.interface';
+import { Color, DataParams, DetailPokemon, ResultPokemns, Specie } from '@interfaces/pokemon.interface';
 import { BaseService } from '@services/base/base.service';
 import { Subscription } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class PokemonService extends BaseService {
 			params = params.appendAll(data);
 
 			let subscription: Subscription;
-			subscription = this.http.get<ResultPokemns>(`${this.url_base}`, { params }).subscribe({
+			subscription = this.http.get<ResultPokemns>(`${this.url_base}/pokemon`, { params }).subscribe({
 				next: (result: ResultPokemns) => {
 					resolve(result);
 				},
@@ -47,9 +47,29 @@ export class PokemonService extends BaseService {
 		return new Promise((resolve, reject) => {
 
 			let subscription: Subscription;
-			subscription = this.http.get<DetailPokemon>(`${this.url_base}/${id}`).subscribe({
+			subscription = this.http.get<DetailPokemon>(`${this.url_base}/pokemon/${id}`).subscribe({
 				next: (result: DetailPokemon) => {
 					resolve(result);
+				},
+				error: (error: any) => {
+					reject(error);
+				},
+				complete: () => {
+					if (subscription) {
+						subscription.unsubscribe();
+					}
+				}
+			})
+		});
+	}
+
+	public getdataPokemonDetailSpecies(id: string): Promise<Color> {
+		return new Promise((resolve, reject) => {
+
+			let subscription: Subscription;
+			subscription = this.http.get<Specie>(`${this.url_base}/pokemon-species/${id}`).subscribe({
+				next: (result: Specie) => {
+					resolve(result.color);
 				},
 				error: (error: any) => {
 					reject(error);

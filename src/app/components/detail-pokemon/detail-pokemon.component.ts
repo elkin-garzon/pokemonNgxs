@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ImagePokemonComponent } from '@components/image-pokemon/image-pokemon.component';
 import { environment } from '@environments/environment.development';
-import { DetailPokemon, Sprites } from '@interfaces/pokemon.interface';
+import { Color, DetailPokemon } from '@interfaces/pokemon.interface';
 import { Store } from '@ngxs/store';
 import { PokemonService } from '@services/pokemon/pokemon.service';
 import { SelectPokemonBooleanAction } from '@store/selectPokemon/select-pokemon.actions';
@@ -21,6 +21,8 @@ export class DetailPokemonComponent implements OnInit {
 
 	private readonly service = inject(PokemonService);
 	private store = inject(Store);
+	private color: Color = {} as Color;
+	public colorPokemon: string = '';
 	public detailPokemon: DetailPokemon = {} as DetailPokemon;
 	public urlImage: string = '';
 	private subscriptions: Subscription[] = [];
@@ -42,6 +44,8 @@ export class DetailPokemonComponent implements OnInit {
 
 	private async setPokemon(id: string) {
 		if (id !== '') {
+			this.color = await this.service.getdataPokemonDetailSpecies(id);
+			this.colorPokemon = `pokemon-${this.color.name}`;
 			this.detailPokemon = await this.service.getdataPokemonDetail(id);
 			this.urlImage = `${environment.URL_IMAGE_OFFICIAL}/${this.detailPokemon.id}.png`;
 			return
@@ -65,6 +69,10 @@ export class DetailPokemonComponent implements OnInit {
 				.slice(0, 4);
 		}
 		return [];
+	}
+
+	public get aleatorySprites(): number {
+		return Math.floor(1000 + Math.random() * 9000);
 	}
 
 	public get moves(): string {

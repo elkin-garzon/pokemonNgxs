@@ -1,2 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+:root {
+    --pokemon-color-black: #333333;
+    --pokemon-color-blue: #6390F0;
+    --pokemon-color-brown: #A0522D;
+    --pokemon-color-gray: #A8A8A8;
+    --pokemon-color-green: #78C850;
+    --pokemon-color-pink: #EE99AC;
+    --pokemon-color-purple: #A040A0;
+    --pokemon-color-red: #F08030;
+    --pokemon-color-white: #F5F5F5;
+    --pokemon-color-yellow: #F8D030;
+}
+
+@layer base {
+    :root {
+      --color-pokemon-black: #333333;
+      --color-pokemon-blue: #6390F0;
+      --color-pokemon-brown: #A0522D;
+      --color-pokemon-gray: #A8A8A8;
+      --color-pokemon-green: #78C850;
+      --color-pokemon-pink: #EE99AC;
+      --color-pokemon-purple: #A040A0;
+      --color-pokemon-red: #F08030;
+      --color-pokemon-white: #F5F5F5;
+      --color-pokemon-yellow: #F8D030;
+    }
+  }
+@layer utilities {
+    .bg-pokemon-black { background-color: var(--color-pokemon-black); }
+    .bg-pokemon-blue { background-color: var(--color-pokemon-blue); }
+    .bg-pokemon-brown { background-color: var(--color-pokemon-brown); }
+    .bg-pokemon-gray { background-color: var(--color-pokemon-gray); }
+    .bg-pokemon-green { background-color: var(--color-pokemon-green); }
+    .bg-pokemon-pink { background-color: var(--color-pokemon-pink); }
+    .bg-pokemon-purple { background-color: var(--color-pokemon-purple); }
+    .bg-pokemon-red { background-color: var(--color-pokemon-red); }
+    .bg-pokemon-white { background-color: var(--color-pokemon-white); }
+    .bg-pokemon-yellow { background-color: var(--color-pokemon-yellow); }
+
+
+    .border-pokemon-black { border-color: var(--color-pokemon-black); }
+    .border-pokemon-blue { border-color: var(--color-pokemon-blue); }
+    .border-pokemon-brown { border-color: var(--color-pokemon-brown); }
+    .border-pokemon-gray { border-color: var(--color-pokemon-gray); }
+    .border-pokemon-green { border-color: var(--color-pokemon-green); }
+    .border-pokemon-pink { border-color: var(--color-pokemon-pink); }
+    .border-pokemon-purple { border-color: var(--color-pokemon-purple); }
+    .border-pokemon-red { border-color: var(--color-pokemon-red); }
+    .border-pokemon-white { border-color: var(--color-pokemon-white); }
+    .border-pokemon-yellow { border-color: var(--color-pokemon-yellow); }
+}

@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailPokemonComponent } from '@components/detail-pokemon/detail-pokemon.component';
 import { PokemonComponent } from '@components/pokemon/pokemon.component';
+import { SearchComponent } from '@components/search/search.component';
 import { DataParams, ResultPokemns } from '@interfaces/pokemon.interface';
 import { Store } from '@ngxs/store';
 import { PokemonService } from '@services/pokemon/pokemon.service';
@@ -12,7 +13,8 @@ import { map, Subscription } from 'rxjs';
 	selector: 'pn-list-pokemon',
 	imports: [
 		PokemonComponent,
-		DetailPokemonComponent
+		DetailPokemonComponent,
+		SearchComponent
 	],
 	templateUrl: './list-pokemon.component.html'
 })

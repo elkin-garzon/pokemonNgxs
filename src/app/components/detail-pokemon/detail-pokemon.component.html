@@ -1,7 +1,12 @@
-<section
-    class="w-full p-4 border-2 border-gray-300 rounded-lg shadow-md bg-white cursor-pointer flex h-full flex-col justify-between" >
+<section class="w-full py-8 px-4 border-2 rounded-lg shadow-md  flex h-full flex-col justify-between"
+    [ngClass]="[
+        'bg-' + colorPokemon,
+        'border-' + colorPokemon
+    ]">
 
-    <button type="button" class="absolute right-4 top-4 border-1 border-gray-400 text-gray-400 rounded-full w-7 h-7 items-center cursor-pointer" (click)="closeDetailPokemon()">X</button>
+    <button type="button"
+        class="absolute right-4 top-4 text-black rounded-full w-7 h-7 items-center cursor-pointer bg-white"
+        (click)="closeDetailPokemon()">X</button>
     <pn-image-pokemon [url]="urlImage" [id]="detailPokemon.id" [name]="detailPokemon.name" />
 
     <article>
@@ -9,28 +14,31 @@
         <h2 class="text-center font-semibold">{{detailPokemon.name}}</h2>
     </article>
 
+    <section class="grid grid-cols-2 gap-4 mt-4">
+        <article class="text-center">
+            <h2 class="font-semibold">Tipo</h2>
+            <p>{{types}}</p>
+        </article>
+    
+        <article class="text-center">
+            <h2 class="font-semibold">Peso</h2>
+            <p>{{detailPokemon.weight}} KG</p>
+        </article>
+    </section>
+    
     <article>
-        <h2 class="text-left font-semibold">Tipo</h2>
-        <p>{{types}}</p>
-    </article>
-
-    <article>
-        <h2 class="text-left font-semibold">Peso</h2>
-        <p>{{detailPokemon.weight}} KG</p>
-    </article>
-
-    <article>
-        <h2 class="text-left font-semibold">Sprites</h2>
+        <h2 class="text-center font-semibold">Sprites</h2>
         <div class="grid grid-cols-4 gap-4 mt-2">
-            @for (sprite of sprites; track sprite) {
-            <pn-image-pokemon [url]="sprite" [id]="detailPokemon.id" [name]="detailPokemon.name" class="rounded-full border-2 border-gray-300" />
+            @for (sprite of sprites; track aleatorySprites) {
+            <pn-image-pokemon [url]="sprite" [id]="detailPokemon.id" [name]="detailPokemon.name"
+                class="rounded-full bg-white"/>
             }
         </div>
 
     </article>
 
     <article>
-        <h2 class="text-left font-semibold">Movimientos</h2>
+        <h2 class="text-center font-semibold">Movimientos</h2>
         <p>
             {{moves}}
         </p>
