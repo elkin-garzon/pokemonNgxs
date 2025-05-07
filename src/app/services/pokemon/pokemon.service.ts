@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Color, DataParams, DetailPokemon, ResultPokemns, Specie } from '@interfaces/pokemon.interface';
+import { Color, DataParams, DetailPokemon, ResultPokemns, SearchPokemon, Specie } from '@interfaces/pokemon.interface';
 import { BaseService } from '@services/base/base.service';
 import { Subscription } from 'rxjs';
 
@@ -65,7 +65,6 @@ export class PokemonService extends BaseService {
 
 	public getdataPokemonDetailSpecies(id: string): Promise<Color> {
 		return new Promise((resolve, reject) => {
-
 			let subscription: Subscription;
 			subscription = this.http.get<Specie>(`${this.url_base}/pokemon-species/${id}`).subscribe({
 				next: (result: Specie) => {
@@ -82,4 +81,24 @@ export class PokemonService extends BaseService {
 			})
 		});
 	}
+
+	public searchPokemon(name: string): Promise<SearchPokemon> {
+		return new Promise((resolve, reject) => {
+			let subscription: Subscription;
+			subscription = this.http.get<SearchPokemon>(`${this.url_base}/pokemon/${name}`).subscribe({
+				next: (result: SearchPokemon) => {
+					resolve(result);
+				},
+				error: (error: any) => {
+					reject(error);
+				},
+				complete: () => {
+					if (subscription) {
+						subscription.unsubscribe();
+					}
+				}
+			})
+		});
+	}
+
 }

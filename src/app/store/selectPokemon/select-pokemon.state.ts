@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { SelectPokemonBooleanAction, SelectPokemonIdAction } from './select-pokemon.actions';
+import { SearchPokemonAction, SelectPokemonBooleanAction, SelectPokemonIdAction } from './select-pokemon.actions';
 
 export type changeSelectPokemon = {
-	select: boolean,
-	idPokemon: string
+	select: boolean;
+	idPokemon: string;
+	search: string;
 }
-
-const defaultsChangeSelectPokemon = {} as changeSelectPokemon;
 
 const defaults: changeSelectPokemon = {
 	select: false,
-	idPokemon: ''
+	idPokemon: '',
+	search: ''
 };
 
 @State<changeSelectPokemon>({
@@ -47,5 +47,15 @@ export class SelectPokemonState {
 				select: payload
 			}
 		);
+	}
+
+	@Selector()
+	static searchPokemon(state: changeSelectPokemon): string {
+		return state.search
+	}
+
+	@Action(SearchPokemonAction)
+	searchPokemon(ctx: StateContext<changeSelectPokemon>, { payload }: SearchPokemonAction) {
+		ctx.patchState({ search: payload });
 	}
 }

@@ -7,3 +7,9 @@ export class SelectPokemonBooleanAction {
 	static readonly type = '[SelectPokemon] Select Pokemon view';
 	constructor(public payload: boolean) { }
 }
+
+
+export class SearchPokemonAction {
+	static readonly type = '[SelectPokemon] Search Pokemon';
+	constructor(public payload: string) { }
+}
