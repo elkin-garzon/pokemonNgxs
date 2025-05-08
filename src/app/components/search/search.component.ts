@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataParams } from '@interfaces/pokemon.interface';
 import { Store } from '@ngxs/store';
 import { SearchPokemonAction, SelectPokemonBooleanAction } from '@store/selectPokemon/select-pokemon.actions';
+import { SelectPokemonState } from '@store/selectPokemon/select-pokemon.state';
+import { map, Subscription } from 'rxjs';
 
 @Component({
 	selector: 'pn-search',
@@ -19,14 +21,15 @@ export class SearchComponent {
 	private readonly router = inject(Router);
 	private readonly store = inject(Store);
 	private readonly route = inject(ActivatedRoute);
-	
+
 	public form!: FormGroup;
 	private readonly params: DataParams = {} as DataParams;
+	private subscriptions: Subscription[] = [];
 
 	ngOnInit(): void {
 		this.createForm();
 		this.getParamsUrl();
-		
+		this.observerOrderList();
 	}
 
 	private async getParamsUrl() {
@@ -48,13 +51,29 @@ export class SearchComponent {
 		this.store.dispatch(new SearchPokemonAction(''));
 		if (this.form.valid) {
 			this.params['pokemon'] = this.form.value.pokemon;
-			this.router.navigate(['.'], {
-				queryParams: this.params
-			})
 			this.store.dispatch(new SearchPokemonAction(this.form.value.pokemon));
 			this.store.dispatch(new SelectPokemonBooleanAction(true));
 		} else {
 			this.form.markAllAsTouched();
 		}
 	}
+
+	private observerOrderList() {
+		this.subscriptions.push(
+			this.store.select(SelectPokemonState.selectPokemon).pipe(map((view: boolean) => this.searchPokemon(view))).subscribe(),
+		);
+	}
+
+	private searchPokemon(view: boolean) {
+		if (!view) {
+			this.form.patchValue({ pokemon: '' });
+			this.store.dispatch(new SelectPokemonBooleanAction(false));
+			const queryParams = { ...this.route.snapshot.queryParams };
+			delete queryParams['pokemon'];
+			this.router.navigate(['.'], {
+				queryParams: queryParams
+			})
+		}
+	}
+
 }

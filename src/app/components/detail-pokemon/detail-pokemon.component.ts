@@ -5,7 +5,7 @@ import { environment } from '@environments/environment.development';
 import { Color, DetailPokemon } from '@interfaces/pokemon.interface';
 import { Store } from '@ngxs/store';
 import { PokemonService } from '@services/pokemon/pokemon.service';
-import { SelectPokemonBooleanAction } from '@store/selectPokemon/select-pokemon.actions';
+import { SearchPokemonAction, SelectPokemonBooleanAction } from '@store/selectPokemon/select-pokemon.actions';
 import { SelectPokemonState } from '@store/selectPokemon/select-pokemon.state';
 import { map, Subscription } from 'rxjs';
 
@@ -85,6 +85,7 @@ export class DetailPokemonComponent implements OnInit {
 
 	public closeDetailPokemon() {
 		this.store.dispatch(new SelectPokemonBooleanAction(false));
+		this.store.dispatch(new SearchPokemonAction(''));
 	}
 
 }
