@@ -70,7 +70,7 @@ export class SearchComponent {
 			this.store.dispatch(new SelectPokemonBooleanAction(false));
 			const queryParams = { ...this.route.snapshot.queryParams };
 			delete queryParams['pokemon'];
-			this.router.navigate(['.'], {
+			this.router.navigate(['/pokemon-ngxs'], {
 				queryParams: queryParams
 			})
 		}

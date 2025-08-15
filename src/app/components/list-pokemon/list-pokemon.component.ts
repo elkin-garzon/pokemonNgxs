@@ -61,7 +61,7 @@ export class ListPokemonComponent {
 			const [key, value] = param.split('=');
 			this.params[key] = value;
 		});
-		this.router.navigate(['.'], {
+		this.router.navigate(['/pokemon-ngxs'], {
 			queryParams: this.params
 		})
 	}

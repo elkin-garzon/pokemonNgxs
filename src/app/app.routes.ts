@@ -9,7 +9,7 @@ export const routes: Routes = [
         component: BaseComponent,
         children: [
             {
-                path: '',
+                path: 'pokemon-ngxs',
                 loadComponent: () => import('./pages/home/home.component').then(c => c.HomeComponent),
                 providers: [provideStates(statusList)],
             },
