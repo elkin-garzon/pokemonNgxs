@@ -31,10 +31,11 @@
 							}
 						],
 						"styles": [
+							"src/styles.css",
 							{
 								"input": "src/styles.css",
-								"bundleName": "styles",
-								"inject": true
+								"bundleName": "micro_frontend",
+								"inject": false
 							}
 						],
 						"scripts": [],
