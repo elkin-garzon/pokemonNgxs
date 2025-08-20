@@ -34,7 +34,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build complete
-          path: dist/
+          path: dist/pokemon-ngxs
 
       # - name: Deploy to S3
       #   uses: aws-actions/s3-sync@v2
