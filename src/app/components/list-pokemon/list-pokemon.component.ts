@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DetailPokemonComponent } from '@components/detail-pokemon/detail-pokemon.component';
@@ -13,9 +14,10 @@ import { map, Subscription } from 'rxjs';
 @Component({
 	selector: 'pn-list-pokemon',
 	imports: [
+		CommonModule,
 		PokemonComponent,
 		DetailPokemonComponent,
-		SearchComponent
+		SearchComponent,
 	],
 	templateUrl: './list-pokemon.component.html'
 })
