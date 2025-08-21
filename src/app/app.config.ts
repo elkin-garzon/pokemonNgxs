@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(routes),
 		importProvidersFrom(
-			NgxsModule.forRoot(statusList),
+			NgxsModule.forRoot([]),
 		),
 		provideHttpClient(
 			withFetch(),

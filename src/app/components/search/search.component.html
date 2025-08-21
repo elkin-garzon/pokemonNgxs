@@ -1,5 +1,5 @@
-<form class="grid grid-cols-5 gap-4 mb-4" [formGroup]="form">
-    <fieldset class="col-span-4">
+<form class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-4" [formGroup]="form">
+    <fieldset class="md:col-span-4">
         <input type="text" placeholder="Buscar Pokemon" class="w-full p-2 border-2 border-gray-300 rounded-lg outline-none placeholder:text-gray-400" formControlName="pokemon"/>
     </fieldset>
     <button type="button" class="p-1 bg-blue-400 text-white font-semibold rounded-lg cursor-pointer w-full" (click)="submit()">Buscar</button>
