@@ -36,12 +36,12 @@ jobs:
           name: build complete
           path: dist/pokemon-ngxs
 
-      # - name: Deploy to S3
-      #   uses: aws-actions/s3-sync@v2
-      #   with:
-      #     bucket: ${{ secrets.AWS_S3_BUCKET }}
-      #     region: ${{ secrets.AWS_REGION }}
-      #     source-dir: dist/pokemon-ngxs
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Deploy to S3
+        uses: aws-actions/s3-sync@v2
+        with:
+          bucket: ${{ secrets.AWS_S3_BUCKET }}
+          region: ${{ secrets.AWS_REGION }}
+          source-dir: dist/pokemon-ngxs
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
