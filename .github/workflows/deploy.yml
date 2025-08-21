@@ -4,14 +4,8 @@ on:
   push:
     branches:
       - master
-  workflow_dispatch:
 
 jobs:
-  pull-repo:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
   actions-repo:
     needs: pull-repo
     runs-on: ubuntu-latest
