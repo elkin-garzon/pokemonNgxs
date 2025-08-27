@@ -88,7 +88,8 @@
 					"defaultConfiguration": "development",
 					"options": {
 						"port": 4201,
-						"publicHost": "http://localhost:4201"
+						"publicHost": "http://localhost:4201",
+						"extraWebpackConfig": "webpack.config.js"
 					}
 				},
 				"extract-i18n": {
