@@ -1,0 +1,16 @@
+services:
+    pokemon-ngxs:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: p-pokemon-ngxs
+        container_name: p-pokemon-ngxs
+        restart: always
+        ports:
+            - "4201:4201"
+        networks:
+            - esgy-network
+
+networks:
+    esgy-network:
+        external: true

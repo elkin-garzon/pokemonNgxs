@@ -28,6 +28,7 @@ jobs:
         with:
           name: build complete
           path: dist/pokemon-ngxs
+          retention-days: 1
 
       - name: Clear old folder in S3
         run: |
