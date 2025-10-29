@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-complete
-          path: dist/pokemon-ngxs/browser
+          path: dist/pokemon-ngxs/browser/
           retention-days: 1
 
       - name: Clear old folder in S3
