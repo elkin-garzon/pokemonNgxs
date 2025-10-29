@@ -49,3 +49,8 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           SOURCE_DIR: dist/pokemon-ngxs
           DEST_DIR: mf/pokemon-ngxs
+      
+      - name: Delete artifact from GitHub
+        uses: geekyeggo/delete-artifact@v5
+        with:
+          name: build-complete
