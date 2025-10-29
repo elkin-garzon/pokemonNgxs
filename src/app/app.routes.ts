@@ -3,7 +3,7 @@ import { BaseComponent } from './layouts/base/base.component';
 import { provideStates } from '@ngxs/store';
 import { statusList } from '@store/index';
 
-export const routes: Routes = [
+export const ROUTER_POKEMON: Routes = [
     {
         path: '',
         component: BaseComponent,

@@ -81,7 +81,7 @@
 							"src/styles.css",
 							{
 								"input": "src/styles.css",
-								"bundleName": "micro_frontend",
+								"bundleName": "styles_frontend",
 								"inject": false
 							}
 						],

@@ -5,13 +5,12 @@ module.exports = withNativeFederation({
   name: 'pokemonNgxs',
 
   exposes: {
-    './Component': './src/app/app.component.ts',
+    './pokemon': './src/app/app.routes.ts'
   },
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
   },
-
   skip: [
     'rxjs/ajax',
     'rxjs/fetch',
@@ -29,5 +28,5 @@ module.exports = withNativeFederation({
     // get the traditional behavior:
     ignoreUnusedDeps: true
   }
-  
+
 });
