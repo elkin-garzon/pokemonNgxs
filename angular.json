@@ -15,81 +15,26 @@
 			"prefix": "pn",
 			"architect": {
 				"build": {
-					"builder": "ngx-build-plus:browser",
-					"options": {
-						"outputPath": "dist/pokemon-ngxs",
-						"index": "src/index.html",
-						"polyfills": [
-							"zone.js"
-						],
-						"tsConfig": "tsconfig.app.json",
-						"assets": [
-							{
-								"glob": "**/*",
-								"input": "public",
-								"output": "."
-							}
-						],
-						"styles": [
-							"src/styles.css",
-							{
-								"input": "src/styles.css",
-								"bundleName": "micro_frontend",
-								"inject": false
-							}
-						],
-						"scripts": [],
-						"main": "src/main.ts",
-						"extraWebpackConfig": "webpack.config.js",
-						"commonChunk": false
-					},
+					"builder": "@angular-architects/native-federation:build",
+					"options": {},
 					"configurations": {
 						"production": {
-							"budgets": [
-								{
-									"type": "initial",
-									"maximumWarning": "500kB",
-									"maximumError": "1MB"
-								},
-								{
-									"type": "anyComponentStyle",
-									"maximumWarning": "4kB",
-									"maximumError": "8kB"
-								}
-							],
-							"outputHashing": "all",
-							"extraWebpackConfig": "webpack.prod.config.js"
+							"target": "pokemonNgxs:esbuild:production"
 						},
 						"development": {
-							"optimization": false,
-							"extractLicenses": false,
-							"sourceMap": true,
-							"fileReplacements": [
-								{
-									"replace": "src/environments/environment.ts",
-									"with": "src/environments/environment.development.ts"
-								}
-							]
+							"target": "pokemonNgxs:esbuild:development",
+							"dev": true
 						}
 					},
 					"defaultConfiguration": "production"
 				},
 				"serve": {
-					"builder": "ngx-build-plus:dev-server",
-					"configurations": {
-						"production": {
-							"buildTarget": "pokemonNgxs:build:production",
-							"extraWebpackConfig": "webpack.prod.config.js"
-						},
-						"development": {
-							"buildTarget": "pokemonNgxs:build:development"
-						}
-					},
-					"defaultConfiguration": "development",
+					"builder": "@angular-architects/native-federation:build",
 					"options": {
-						"port": 4201,
-						"publicHost": "http://localhost:4201",
-						"extraWebpackConfig": "webpack.config.js"
+						"target": "pokemonNgxs:serve-original:development",
+						"rebuildDelay": 0,
+						"dev": true,
+						"port": 0
 					}
 				},
 				"extract-i18n": {
@@ -113,6 +58,80 @@
 							"src/styles.css"
 						],
 						"scripts": []
+					}
+				},
+				"esbuild": {
+					"builder": "@angular/build:application",
+					"options": {
+						"outputPath": "dist/pokemon-ngxs",
+						"index": "src/index.html",
+						"polyfills": [
+							"zone.js",
+							"es-module-shims"
+						],
+						"tsConfig": "tsconfig.app.json",
+						"assets": [
+							{
+								"glob": "**/*",
+								"input": "public",
+								"output": "."
+							}
+						],
+						"styles": [
+							"src/styles.css",
+							{
+								"input": "src/styles.css",
+								"bundleName": "styles_frontend",
+								"inject": false
+							}
+						],
+						"scripts": [],
+						"browser": "src/main.ts"
+					},
+					"configurations": {
+						"production": {
+							"budgets": [
+								{
+									"type": "initial",
+									"maximumWarning": "500kB",
+									"maximumError": "1MB"
+								},
+								{
+									"type": "anyComponentStyle",
+									"maximumWarning": "4kB",
+									"maximumError": "8kB"
+								}
+							],
+							"outputHashing": "all"
+						},
+						"development": {
+							"optimization": false,
+							"extractLicenses": false,
+							"sourceMap": true,
+							"fileReplacements": [
+								{
+									"replace": "src/environments/environment.ts",
+									"with": "src/environments/environment.development.ts"
+								}
+							]
+						}
+					},
+					"defaultConfiguration": "production"
+				},
+				"serve-original": {
+					"builder": "@angular-devkit/build-angular:dev-server",
+					"configurations": {
+						"production": {
+							"buildTarget": "pokemonNgxs:esbuild:production"
+						},
+						"development": {
+							"buildTarget": "pokemonNgxs:esbuild:development"
+						}
+					},
+					"defaultConfiguration": "development",
+					"options": {
+						"port": 4201,
+						"publicHost": "http://localhost:4201"
 					}
 				}
 			}

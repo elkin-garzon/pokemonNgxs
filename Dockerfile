@@ -16,7 +16,7 @@ RUN npm run build
 FROM nginx:alpine
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-COPY --from=build /app/dist/pokemon-ngxs /usr/share/nginx/html
+COPY --from=build /app/dist/pokemon-ngxs/browser /usr/share/nginx/html
 
 EXPOSE 4201
 CMD ["nginx", "-g", "daemon off;"]
